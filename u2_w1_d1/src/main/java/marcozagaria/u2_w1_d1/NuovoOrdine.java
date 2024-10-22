@@ -15,10 +15,7 @@ public class NuovoOrdine {
 
     @Bean
     public Tavolo tavolo() {
-        Tavolo tavolo = new Tavolo();
-        tavolo.setNumero(1);
-        tavolo.setNumeroCopertiMax(4);
-        tavolo.setStato(StatoTavolo.LIBERO);
+        Tavolo tavolo = new Tavolo(1, 20, StatoTavolo.LIBERO);
         return tavolo;
     }
 }

@@ -16,4 +16,24 @@ public class Ordine {
     private Tavolo tavolo;
     private List<ElementoMenu> elementi = new ArrayList<>();
     private double importoTotale;
+
+    public Ordine(StatoOrdine stato, int numeroCoperti, LocalDateTime oraAcquisizione, Tavolo tavolo, List<ElementoMenu> elementi, double importoTotale) {
+
+        this.stato = stato;
+        this.numeroCoperti = numeroCoperti;
+        this.oraAcquisizione = oraAcquisizione;
+        this.tavolo = tavolo;
+        this.elementi = elementi;
+        this.importoTotale = importoTotale;
+    }
+
+    public void calcolaImportoTotale(double costoCoperto) {
+        this.importoTotale += costoCoperto * this.numeroCoperti;
+    }
+
+    public void aggiungiElemento(ElementoMenu prodotto) {
+        this.elementi.add(prodotto);
+        this.importoTotale += prodotto.getPrezzo();
+
+    }
 }

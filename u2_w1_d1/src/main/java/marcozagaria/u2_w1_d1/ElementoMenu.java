@@ -11,4 +11,5 @@ public abstract class ElementoMenu {
     private String nome;
     private double prezzo;
     private int calorie;
+    
 }

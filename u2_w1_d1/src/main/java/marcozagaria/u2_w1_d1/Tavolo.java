@@ -7,6 +7,12 @@ public class Tavolo {
     private int numero;
     private int numeroCopertiMax;
     private StatoTavolo stato;
+
+    public Tavolo(int numero, int numeroCopertiMax, StatoTavolo stato) {
+        this.numero = numero;
+        this.numeroCopertiMax = numeroCopertiMax;
+        this.stato = stato;
+    }
 }
 
 
