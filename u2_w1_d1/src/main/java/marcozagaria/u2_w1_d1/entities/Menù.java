@@ -1,4 +1,4 @@
-package marcozagaria.u2_w1_d1;
+package marcozagaria.u2_w1_d1.entities;
 
 
 import lombok.Data;

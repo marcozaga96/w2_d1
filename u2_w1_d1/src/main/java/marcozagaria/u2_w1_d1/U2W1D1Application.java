@@ -1,5 +1,6 @@
 package marcozagaria.u2_w1_d1;
 
+import marcozagaria.u2_w1_d1.entities.Menù;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -7,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class U2W1D1Application {
 
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(CreaMenù.class);
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(U2W1D1Application.class);
         Menù menù = context.getBean(Menù.class);
         menù.stampaMenu();
     }

@@ -1,14 +1,14 @@
 package marcozagaria.u2_w1_d1;
 
 import lombok.extern.slf4j.Slf4j;
+import marcozagaria.u2_w1_d1.entities.*;
+import marcozagaria.u2_w1_d1.enums.StatoOrdine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Slf4j
 
@@ -16,27 +16,35 @@ import java.util.List;
 public class Runner implements CommandLineRunner {
 
     @Autowired
-    private Ordine newOrdine;
+    CreaMenù tavolo1;
 
     @Override
     public void run(String... args) throws Exception {
 
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(U2W1D1Application.class);
+        try {
+            Menù m = (Menù) ctx.getBean("menu");
+            m.stampaMenu();
 
-        ApplicationContext context = new AnnotationConfigApplicationContext(Runner.class);
-        Menù menu = context.getBean(Menù.class);
-        menu.stampaMenu();
+            Tavolo t1 = (Tavolo) ctx.getBean(tavolo1.getTable1());
 
-        Ordine newOrdine = context.getBean(Ordine.class);
+            Ordine o1 = new Ordine(1, StatoOrdine.IN_CORSO, 5, LocalDateTime.now(), t1);
 
+            o1.aggiungiElemento(ctx.getBean("margherita", Pizza.class));
+            o1.aggiungiElemento(ctx.getBean("pizza al salame", Pizza.class));
+            o1.aggiungiElemento(ctx.getBean("acqua", Bevanda.class));
+            o1.aggiungiElemento(ctx.getBean("vino", Bevanda.class));
 
-        Tavolo tavolo = new Tavolo(1, 4, StatoTavolo.LIBERO);
+            System.out.println("DETTAGLI TAVOLO 1:");
+            o1.print();
 
-        List<ElementoMenu> elementiMenu = new ArrayList<>();
-        elementiMenu.add(menu.getPizze().get(0));
-        elementiMenu.add(menu.getBevande().get(0));
-
-        Ordine ordine = newOrdine.creaOrdine(tavolo, elementiMenu);
-        ordine.toString();
+            System.out.println("CONTO TAVOLO 1");
+            System.out.println(o1.calcolaImportoTotale());
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        } finally {
+            ctx.close();
+        }
     }
 
 

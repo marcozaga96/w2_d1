@@ -1,5 +1,7 @@
 package marcozagaria.u2_w1_d1;
 
+import marcozagaria.u2_w1_d1.entities.*;
+import marcozagaria.u2_w1_d1.enums.StatoTavolo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -85,6 +87,11 @@ public class CreaMenù {
         menu.aggiungiBevanda(acqua());
         menu.aggiungiBevanda(vino());
         return menu;
+    }
+
+    @Bean("tavolo_1")
+    String getTable1() {
+        return new Tavolo(1, 20, StatoTavolo.LIBERO).toString();
     }
 
 }
